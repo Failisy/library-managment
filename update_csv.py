@@ -1,19 +1,14 @@
-import pandas as pd
+import csv
 
-# CSV 파일 로드
-df = pd.read_csv('user_data.csv')
+# 기존 CSV 파일 경로
+csv_file = 'user_data.csv'
 
-# 사용자 추가 예시
-new_user = {
-    'unit': '12346',
-    'id': '5678',
-    'rank': '중사',
-    'name': '이순신',
-    'password': 'cGFzc3dvcmQ='  # 'password'를 Base64로 인코딩한 값
-}
+# 새로운 사용자 정보 (예시)
+new_user = ['12345', '1234', '사병', '홍길동', 'SG9F5nYwcmw=']  # Base64 인코딩된 비밀번호
 
-# DataFrame에 새 사용자 추가
-df = df.append(new_user, ignore_index=True)
+# CSV 파일 열기 및 사용자 추가
+with open(csv_file, mode='a', newline='', encoding='utf-8') as file:
+    writer = csv.writer(file)
+    writer.writerow(new_user)
 
-# 수정된 데이터를 CSV로 저장
-df.to_csv('user_data.csv', index=False)
+print("CSV 파일이 업데이트되었습니다.")
