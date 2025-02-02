@@ -8,14 +8,25 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     const name = document.getElementById('name').value;
     const password = document.getElementById('password').value;
 
-    // CSV 파일에서 사용자 정보 확인하는 코드 (GitHub Actions 사용)
-    // 실제 배포 시 백엔드 API에서 CSV 파일을 처리하고 비교해야 합니다.
+    // CSV 데이터 (단순히 예시로 입력한 값들을 배열로 저장)
+    const users = [
+        { unit: "부대1", id: "123456", rank: "병", name: "홍길동", password: btoa("비밀번호1") },
+        { unit: "부대2", id: "654321", rank: "중사", name: "김철수", password: btoa("비밀번호2") }
+    ];
 
-    // 가정: 서버에서 CSV에서 사용자 정보를 읽어오는 과정 (암호화된 비밀번호 복호화)
-    // 예시: 비밀번호 비교 후 로그인 처리
-    const encryptedPassword = btoa(password); // 복호화 처리 필요
+    // 로그인 검증
+    let userFound = false;
+    for (let user of users) {
+        if (user.unit === unit && user.id === id && user.rank === rank && user.name === name && user.password === btoa(password)) {
+            userFound = true;
+            break;
+        }
+    }
 
-    // 로그인 성공 시
-    alert('로그인 성공!');
-    // 홈 페이지로 이동하거나 다른 페이지로 리디렉션
+    if (userFound) {
+        alert('로그인 성공!');
+        window.location.href = "home.html"; // 로그인 후 이동할 페이지
+    } else {
+        alert('로그인 실패! 정보가 일치하지 않습니다.');
+    }
 });
