@@ -1,29 +1,33 @@
-document.getElementById('signup-form').addEventListener('submit', function(event) {
+document.getElementById('signupForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
-    // 입력값 가져오기
     const unit = document.getElementById('unit').value;
     const id = document.getElementById('id').value;
     const rank = document.getElementById('rank').value;
     const name = document.getElementById('name').value;
     const password = document.getElementById('password').value;
 
-    // 비밀번호 암호화 (Base64)
-    const encryptedPassword = btoa(password);
+    // 비밀번호를 Base64로 인코딩
+    const encodedPassword = btoa(password);
 
-    // CSV 형식으로 데이터 저장 (단순 예시)
-    const userData = {
+    // CSV 파일에 저장된 사용자 정보 추가
+    const newUser = {
         unit: unit,
         id: id,
         rank: rank,
         name: name,
-        password: encryptedPassword
+        password: encodedPassword
     };
 
-    // 로그인 시 확인을 위해 console에 저장 (실제 배포시에는 서버로 보내야 함)
-    console.log(userData);
+    Papa.parse('user_data.csv', {
+        download: true,
+        header: true,
+        complete: function(results) {
+            const users = results.data;
+            users.push(newUser);
 
-    alert('회원가입이 완료되었습니다!');
-    // 회원가입 후 로그인 페이지로 이동
-    window.location.href = "index.html";
+            // CSV로 다시 저장 (서버가 필요함, 이 부분은 로컬에서만 구현 가능)
+            console.log(users); // 실제 파일 저장 기능은 구현이 어려운 부분
+        }
+    });
 });
