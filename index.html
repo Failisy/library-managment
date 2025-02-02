@@ -1,31 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로그인</title>
+    <title>로그인 페이지</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h2>로그인</h2>
-    <form id="login-form">
-        <label for="unit">부대:</label>
-        <input type="text" id="unit" required><br>
+    <div class="login-container">
+        <h2>로그인</h2>
+        <form id="loginForm">
+            <label for="unit">부대:</label>
+            <input type="text" id="unit" required>
+            
+            <label for="id">군번:</label>
+            <input type="text" id="id" required>
+            
+            <label for="rank">계급:</label>
+            <input type="text" id="rank" required>
+            
+            <label for="name">성명:</label>
+            <input type="text" id="name" required>
+            
+            <label for="password">비밀번호:</label>
+            <input type="password" id="password" required>
+            
+            <button type="submit">로그인</button>
+        </form>
+        <p>회원가입을 원하시면 <a href="signup.html">여기</a>를 클릭하세요.</p>
+    </div>
 
-        <label for="id">군번:</label>
-        <input type="text" id="id" required><br>
-
-        <label for="rank">계급:</label>
-        <input type="text" id="rank" required><br>
-
-        <label for="name">성명:</label>
-        <input type="text" id="name" required><br>
-
-        <label for="password">비밀번호:</label>
-        <input type="password" id="password" required><br>
-
-        <button type="submit">로그인</button>
-    </form>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <script src="login.js"></script>
 </body>
 </html>
