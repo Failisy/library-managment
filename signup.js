@@ -8,12 +8,20 @@ document.getElementById('signup-form').addEventListener('submit', function(event
     const name = document.getElementById('name').value;
     const password = document.getElementById('password').value;
 
-    // 비밀번호 암호화 (예: 기본적인 해시 방식)
-    const encryptedPassword = btoa(password);  // 실제 배포 시 더 강력한 암호화 필요
+    // 비밀번호 암호화 (Base64)
+    const encryptedPassword = btoa(password);
 
-    // CSV 파일에 저장하는 코드 (GitHub Actions로 처리)
-    // 실제로는 서버 측에서 이 데이터를 받아서 처리해야 합니다.
-    // 서버와의 통신이 필요합니다.
+    // CSV 형식으로 데이터 저장 (단순 예시)
+    const userData = {
+        unit: unit,
+        id: id,
+        rank: rank,
+        name: name,
+        password: encryptedPassword
+    };
+
+    // 로그인 시 확인을 위해 console에 저장 (실제 배포시에는 서버로 보내야 함)
+    console.log(userData);
 
     alert('회원가입이 완료되었습니다!');
     // 회원가입 후 로그인 페이지로 이동
